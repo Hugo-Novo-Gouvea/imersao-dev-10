@@ -1,6 +1,6 @@
 /*
    script.js
-   Lógica principal para o Retro Game Finder.
+   Lógica principal para o RETRO GAME.
    - Carrega os dados dos jogos a partir do arquivo JSON.
    - Renderiza os cards dos jogos na tela.
    - Implementa a funcionalidade de busca em tempo real.
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => { // Adiciona um "ouvinte" q
     let isAdminModeActive = false; // Flag (bandeira) que controla se o modo administrador foi ativado. Começa como falso.
     let isDominationMode = false; // Flag que controla se o modo de dominação mundial está ativo. Começa como falso.
     let allSecrets = []; // Array que armazenará os planos secretos carregados de 'segredo.json'.
+    let adminLevelCounter = 0; // Contador para o easter egg de admin.
 
     // --- Lógica para animação do placeholder ---
     const placeholderTexts = ["chrono trigger...", "CUIDADO: NÃO DIGITE 'ALURA CODE'.....", "nintendo...", "1991...", "CUIDADO: NÃO DIGITE 'ALURA CODE'.....", "street fighter II..."]; // Array com os textos que aparecerão na animação do placeholder.
@@ -130,7 +131,8 @@ document.addEventListener('DOMContentLoaded', () => { // Adiciona um "ouvinte" q
             const card = document.createElement('div'); // Cria um novo elemento <div>.
             card.className = 'game-card'; // Reutiliza a mesma classe de estilo dos cards de jogos para manter a consistência visual.
             card.style.animationDelay = `${index * 50}ms`; // Aplica o mesmo efeito de animação em cascata.
-            card.innerHTML = ` <!-- Define o conteúdo HTML do card com os dados do plano secreto. -->
+            card.dataset.id = secret.id; // Armazena o ID do segredo no card, crucial para abrir o modal correto.
+            card.innerHTML = `
                 <h2>${secret.plano}</h2>
                 <p><strong>Status:</strong> ${secret.status}</p>
                 <p><strong>Prob. Sucesso:</strong> ${secret.prob_sucesso}</p>
@@ -142,23 +144,38 @@ document.addEventListener('DOMContentLoaded', () => { // Adiciona um "ouvinte" q
     }
 
     // Função para abrir e preencher o modal com os detalhes de um jogo.
-    function openModal(gameId) { // Recebe o ID do jogo que foi clicado como uma string.
-        const game = allGames.find(g => g.id === parseInt(gameId)); // Procura no array 'allGames' pelo jogo cujo ID corresponde ao ID do card (convertido para número).
-        if (!game) return; // Se, por algum motivo, o jogo não for encontrado, encerra a função para evitar erros.
+    function openModal(itemId) { // Recebe o ID do item que foi clicado como uma string.
+        const id = parseInt(itemId);
 
-        // Gera novamente o HTML das tags de plataforma, desta vez para o conteúdo do modal.
-        const platformsHTML = game.plataformas.map(p => `<span class="platform-tag">${p}</span>`).join('');
+        if (isDominationMode) {
+            const secret = allSecrets.find(s => s.id === id);
+            if (!secret) return;
 
-        // Define o conteúdo HTML do modal com os dados detalhados do jogo encontrado.
-        modalContent.innerHTML = ` 
-            <h2>${game.nome}</h2>
-            <p><strong>Desenvolvedora:</strong> ${game.desenvolvedora}</p>
-            <p><strong>Ano:</strong> ${game.ano_lancamento}</p>
-            <p>${game.descricao}</p>
-            <div class="platforms" style="margin-top: 15px;">
-                ${platformsHTML}
-            </div>
-        `;
+            modalContent.innerHTML = ` 
+                <h2>${secret.plano}</h2>
+                <p><strong>Status:</strong> ${secret.status}</p>
+                <p><strong>Probabilidade de Sucesso:</strong> ${secret.prob_sucesso}</p>
+                <p>${secret.descricao}</p>
+            `;
+
+        } else {
+            const game = allGames.find(g => g.id === id);
+            if (!game) return;
+
+            // Gera novamente o HTML das tags de plataforma, desta vez para o conteúdo do modal.
+            const platformsHTML = game.plataformas.map(p => `<span class="platform-tag">${p}</span>`).join('');
+
+            // Define o conteúdo HTML do modal com os dados detalhados do jogo encontrado.
+            modalContent.innerHTML = ` 
+                <h2>${game.nome}</h2>
+                <p><strong>Desenvolvedora:</strong> ${game.desenvolvedora}</p>
+                <p><strong>Ano:</strong> ${game.ano_lancamento}</p>
+                <p>${game.descricao}</p>
+                <div class="platforms" style="margin-top: 15px;">
+                    ${platformsHTML}
+                </div>
+            `;
+        }
 
         modalOverlay.classList.add('show'); // Adiciona a classe 'show' ao overlay para torná-lo visível (ativando a transição de opacidade do CSS).
         body.classList.add('no-scroll'); // Adiciona a classe 'no-scroll' ao body para impedir a rolagem da página de fundo.
@@ -173,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => { // Adiciona um "ouvinte" q
     // Adiciona um "ouvinte" de clique ao contêiner dos jogos (usando a técnica de delegação de eventos).
     gameContainer.addEventListener('click', (event) => { // Ouve cliques em qualquer lugar dentro do 'gameContainer', em vez de em cada card individualmente (mais performático).
         const card = event.target.closest('.game-card'); // Verifica se o elemento que originou o clique (ou um de seus pais) é um card com a classe '.game-card'.
-        if (card && !isDominationMode) { // Se um card foi de fato clicado E não estamos no modo de dominação...
+        if (card) { // Se um card foi de fato clicado...
             openModal(card.dataset.id); // ...chama a função 'openModal', passando o ID do jogo que está armazenado no atributo 'data-id' do card.
         }
     });
@@ -182,13 +199,13 @@ document.addEventListener('DOMContentLoaded', () => { // Adiciona um "ouvinte" q
     function filterGames() { // Esta função é chamada a cada letra digitada na barra de busca.
         const query = searchInput.value.toLowerCase().trim(); // Pega o valor atual do campo de busca, converte para minúsculas e remove espaços em branco do início e do fim.
 
-        // Função aninhada para restaurar o sistema ao normal após um easter egg.
-        function resetSystem() { //
+        // Função aninhada para restaurar o sistema ao estado normal de visualização de jogos.
+        function resetSystem() {
             body.classList.remove('error-mode', 'admin-mode'); // Remove as classes de tema de erro (vermelho) e admin (verde).
             gameContainer.classList.remove('easter-egg-active'); // Remove a classe de alinhamento especial do easter egg.
             searchInput.disabled = false; // Reativa o campo de busca.
             searchInput.value = ''; // Limpa o texto do campo de busca.
-            document.getElementById('secret-message-container').innerHTML = ''; // Limpa a mensagem secreta da dica.
+            // A mensagem secreta das "4 chaves" é preservada intencionalmente e não é limpa aqui.
             typePlaceholder(); // Reinicia a animação do placeholder.
             createAndDisplayCards(allGames); // Recria os cards originais dos jogos.
         }
@@ -197,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => { // Adiciona um "ouvinte" q
         if (query === 'alura code') { // Se o usuário digitar exatamente "alura code"...
             if (isAdminModeActive) { // ...e o modo administrador ESTIVER ativo...
                 document.getElementById('secret-message-container').innerHTML = '<p>"É INCRIVEL COMO 4 PALAVRAS CHAVES SE TORNAM UMA SENHA"</p>'; // ...mostra a dica da próxima senha.
-                searchInput.value = ''; // ...limpa a barra de busca para o usuário poder digitar a próxima senha.
+                searchInput.value = ''; // ...limpa a barra de busca para o usuário poder digitar a senha final.
                 filterGames(); // ...chama a função `filterGames` novamente. Desta vez, a `query` estará vazia, fazendo todos os cards reaparecerem.
                 return; // ...e encerra esta execução da função para evitar que a filtragem continue com a `query` "alura code".
             } else { // ...mas se o modo administrador NÃO estiver ativo...
@@ -237,53 +254,83 @@ document.addEventListener('DOMContentLoaded', () => { // Adiciona um "ouvinte" q
             }
         }
         else if (query === 'senhaforte12') { // Se o usuário digitar a senha do modo admin...
-            body.classList.add('admin-mode'); // ...ativa o tema verde.
-            gameContainer.classList.add('easter-egg-active'); // ...ativa o alinhamento vertical.
-            searchInput.value = 'BEM-VINDO, ADMIN!'; // ...muda o texto da busca.
-            searchInput.disabled = true; // ...desativa a busca.
-            clearTimeout(typingTimeout); // ...para a animação do placeholder.
-            document.getElementById('secret-message-container').innerHTML = ''; // ...limpa a dica, caso estivesse visível.
+            const adminMessages = [
+                "MODO ADMINISTRADOR",
+                "MODO SUPER ADMINISTRADOR",
+                "MODO HYPER ADMINISTRADOR",
+                "VOCÊ ESTÁ INDO PARA UM CAMINHO SEM VOLTA",
+                "VOCÊ NÃO QUER SABER O QUE TEM NO OUTRO LADO",
+                "ESSE É MEU ULTIMO AVISO",
+                "MODO TRANSCENDENDO A EXISTENCIA"
+            ];
 
-            // Cria a estrutura da tela de "admin ativado" com a barra de progresso.
-            gameContainer.innerHTML = ` 
-                <h1 class="easter-egg-title">MODO ADMINISTRADOR ATIVADO</h1>
-                <div class="progress-container">
-                    <p class="progress-label" id="progress-label">Restaurando Sistema... 0%</p>
-                    <div class="progress-bar">
-                        <div class="progress-bar-fill" id="progress-bar-fill"></div>
-                    </div>
-                </div>
-            `;
-
-            // Anima a barra de progresso (mesma lógica do modo de erro).
-            let progress = 0;
-            const progressBarFill = document.getElementById('progress-bar-fill');
-            const progressLabel = document.getElementById('progress-label');
-            const interval = setInterval(() => {
-                progress++;
-                progressBarFill.style.width = `${progress}%`;
-                progressLabel.textContent = `Restaurando Sistema... ${progress}%`;
-
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    isAdminModeActive = true; // << PONTO CRÍTICO: Ativa a flag do modo admin ANTES de resetar a tela.
-                    setTimeout(resetSystem, 500);
+            if (adminLevelCounter < adminMessages.length) {
+                const message = adminMessages[adminLevelCounter];
+                body.classList.add('admin-mode'); // ...ativa o tema verde.
+                gameContainer.classList.add('easter-egg-active'); // ...ativa o alinhamento vertical.
+                searchInput.value = 'AVISO!'; // ...muda o texto da busca.
+                searchInput.disabled = true; // ...desativa a busca.
+                clearTimeout(typingTimeout); // ...para a animação do placeholder.
+                
+                // Limpa a dica, mas SOMENTE se não for a dica final das "4 chaves".
+                const secretMessageContainer = document.getElementById('secret-message-container');
+                if (!secretMessageContainer.innerHTML.includes('4 PALAVRAS CHAVES')) {
+                    secretMessageContainer.innerHTML = '';
                 }
-            }, 30);
 
-            return; // Encerra a função.
+                gameContainer.innerHTML = ` 
+                    <h1 class="easter-egg-title">${message}</h1>
+                    <div class="progress-container">
+                        <p class="progress-label" id="progress-label">Processando... 0%</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                `;
+
+                let progress = 0;
+                const progressBarFill = document.getElementById('progress-bar-fill');
+                const progressLabel = document.getElementById('progress-label');
+                const interval = setInterval(() => {
+                    progress++;
+                    progressBarFill.style.width = `${progress}%`;
+                    progressLabel.textContent = `Processando... ${progress}%`;
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        // Se for a última mensagem...
+                        if (adminLevelCounter === adminMessages.length - 1) {
+                            // ...a página transcende para o branco.
+                            setTimeout(() => {
+                                document.body.innerHTML = '';
+                                document.body.style.backgroundColor = 'white';
+                            }, 500);
+                        } else {
+                            // Para as outras mensagens, ativa o modo admin e reseta a tela para o próximo passo.
+                            isAdminModeActive = true; 
+                            adminLevelCounter++;
+                            setTimeout(resetSystem, 500);
+                        }
+                    }
+                }, 30);
+
+                return;
+            }
         }
         else if (isAdminModeActive && query === 'aprender na alura com ia google') { // Se o modo admin está ativo E o usuário digita a senha final...
             const titleElement = document.querySelector('.title'); // ...pega a referência do título principal.
             titleElement.textContent = "PLANO DE DOMINAÇÃO MUNDIAL"; // ...muda o texto visível do título.
             titleElement.dataset.text = "PLANO DE DOMINAÇÃO MUNDIAL"; // ...atualiza o `data-text` para que o efeito glitch funcione com o novo texto.
-            document.getElementById('secret-message-container').innerHTML = ''; // ...limpa a mensagem da dica.
-            searchInput.value = ''; // ...limpa a busca.
+            document.getElementById('secret-message-container').innerHTML = ''; // ...limpa a mensagem da dica das 4 chaves.
+            searchInput.value = 'BEM VINDO A AREA 51'; // ...define a mensagem na barra de busca.
+            searchInput.disabled = true; // ...trava a barra de busca.
             isDominationMode = true; // ...ativa a flag do modo de dominação.
             fetchAndDisplaySecrets(); // ...carrega e exibe os planos secretos.
             return; // ...encerra a função.
         }
         // --- Fim da Lógica dos Easter Eggs ---
+
+        // O contador de nível de admin (`adminLevelCounter`) não é resetado para permitir a progressão através das mensagens.
 
         let visibleCards = 0; // Contador para saber quantos cards estão visíveis após o filtro.
 

@@ -1,6 +1,6 @@
 /*
    style.css
-   Folha de estilos para o Retro Game Finder.
+   Folha de estilos para o RETRO GAME.
    Define a estética retrô, neon e pixelada da aplicação.
 */
 
@@ -124,16 +124,31 @@ body { /* Estiliza o corpo do documento */
     flex-direction: column; /* Organiza os itens internos em uma coluna */
     gap: 15px; /* Cria um espaço entre os itens internos do card */
     cursor: pointer; /* Muda o cursor para uma "mãozinha" para indicar que é clicável */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transições suaves para os efeitos de hover */
+    /* A transição agora inclui opacidade e visibilidade para a filtragem suave */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, opacity 0.4s ease, visibility 0.4s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra sutil para dar profundidade */
-    opacity: 0; /* Define a opacidade inicial como 0 para a animação de fade-in */
-    animation: fadeIn 0.5s ease forwards; /* Aplica a animação 'fadeIn' para que o card apareça suavemente */
+    will-change: transform, box-shadow, opacity; /* Otimização de performance para o navegador */
 }
 
-.game-card:hover { /* Estiliza o card quando o mouse passa por cima */
-    transform: translateY(-5px); /* Move o card 5px para cima */
-    box-shadow: 0 0 15px var(--shadow-color-cyan); /* Adiciona um brilho ciano */
-    border-color: var(--neon-cyan); /* Muda a cor da borda para ciano */
+/* Animação de entrada para os cards */
+.card-enter {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.game-card:hover:not(.hidden) { /* Estiliza o card quando o mouse passa por cima, mas SÓ se ele não estiver oculto */
+    transform: translateY(-8px); /* Move o card 8px para cima */
+    box-shadow: 0 12px 24px var(--shadow-color-cyan); /* Aumenta a sombra para dar profundidade */
+    border-color: var(--neon-cyan);
+}
+
+/* Animação suave para a filtragem (aparecer/desaparecer) */
+.game-card.hidden {
+    opacity: 0;
+    transform: scale(0.95) translateY(0); /* Garante que o transform do hover seja resetado */
+    pointer-events: none; /* Impede que o usuário clique em um card invisível */
+    visibility: hidden; /* Remove o card da navegação por teclado e leitores de tela */
 }
 
 .game-card h2 { /* Estiliza o título (nome do jogo) dentro do card */
@@ -366,6 +381,18 @@ body { /* Estiliza o corpo do documento */
     margin-bottom: 20px; /* Espaçamento inferior */
     text-align: center; /* Garante o alinhamento centralizado do texto */
 }
+
+/* Mensagem para quando a busca não retorna resultados */
+.no-results-message {
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--font-color);
+    font-size: 1.2rem;
+    /* 'display' é controlado pelo JavaScript, mas a animação é definida aqui */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
 
 /* Estilo para a mensagem secreta do segundo easter egg */
 .secret-message-container {

@@ -13,11 +13,13 @@ O Retro Game permite que você visualize uma lista de jogos icônicos e pesquise
 - **Design Retrô**: Interface inspirada na era de ouro dos fliperamas e consoles 8/16-bit.
 - **Responsividade**: Layout adaptável para uma boa experiência em diferentes tamanhos de tela.
 
-## 🤫 A Glitch in the System?
+## 🤫 Uma Falha no Sistema?
 
-Dizem as lendas que o sistema não é tão estável quanto parece. Certas palavras-chave, quando digitadas na busca, podem causar anomalias, revelando mensagens que não deveriam estar ali.
+Dizem as lendas que o sistema não é tão estável quanto parece. Certas palavras-chave, quando digitadas na busca, podem causar anomalias, revelando mensagens que não deveriam estar ali e levando a erros... ou a oportunidades.
 
-Sussurram também sobre um "Modo Administrador", acessível apenas por aqueles que encontram a chave. Ativá-lo pode abrir portas para segredos ainda mais profundos. Você tem o que é preciso para descobrir o **plano**?
+Sussurram sobre um "Modo Administrador", acessível apenas por quem encontra a senha correta. Ativá-lo é apenas o primeiro passo. Dizem que, uma vez dentro, o próprio sistema oferece uma pista para um segredo ainda maior, um que requer a combinação de quatro chaves para ser revelado.
+
+Você tem o que é preciso para transcender a existência e descobrir o **plano de dominação mundial**?
 
 ## 🛠️ Tecnologias Utilizadas
 
