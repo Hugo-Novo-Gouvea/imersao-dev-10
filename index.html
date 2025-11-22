@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!-- Define o tipo de documento como HTML5 -->
+<html lang="pt-BR"> <!-- Início do documento HTML, com o idioma definido como Português do Brasil -->
+<head>
+    <!-- Metadados do documento -->
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres como UTF-8, para suportar acentos e caracteres especiais -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura a viewport para que o site seja responsivo em dispositivos móveis -->
+    <title>Retro Game Finder</title> <!-- Define o título que aparecerá na aba do navegador -->
+
+    <!-- Links para fontes e folha de estilo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Pré-conecta ao servidor de fontes do Google para otimizar o carregamento -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Pré-conecta ao servidor de fontes do Google (requerido para CORS) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- Importa a fonte 'Press Start 2P' do Google Fonts -->
+    <link rel="stylesheet" href="style.css"> <!-- Vincula a folha de estilos externa 'style.css' à página -->
+</head>
+<body> <!-- Corpo do documento, onde todo o conteúdo visível da página fica -->
+
+    <!-- Cabeçalho da página -->
+    <header class="main-header"> <!-- Define o cabeçalho principal da página -->
+        <h1 class="title" data-text="Retro Game Finder">Retro Game Finder</h1> <!-- Título principal (h1), com um atributo 'data-text' usado pelo efeito glitch do CSS -->
+        <!-- Campo de busca -->
+        <div class="search-container"> <!-- Um contêiner para agrupar o campo de busca -->
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nome, dev, ano..."> <!-- Campo de texto para o usuário digitar a busca -->
+        </div>
+        <!-- Contêiner para a mensagem secreta do easter egg -->
+        <div id="secret-message-container" class="secret-message-container"></div>
+    </header>
+
+    <!-- Contêiner principal para os cards dos jogos -->
+    <main id="game-container" class="game-container"></main> <!-- Contêiner principal onde os cards dos jogos serão inseridos via JavaScript -->
+
+    <!-- Estrutura do Modal (inicialmente oculta) -->
+    <div id="modal-overlay" class="modal-overlay"> <!-- Camada de fundo escura e desfocada que cobre a página quando o modal está aberto -->
+        <div id="game-modal" class="game-modal"> <!-- A janela do modal em si, que aparecerá sobre o overlay -->
+            <!-- Botão para fechar o modal -->
+            <button id="close-modal" class="close-modal">&times;</button> <!-- Botão 'X' para fechar o modal -->
+            <!-- Conteúdo do modal será injetado aqui -->
+            <div id="modal-content"></div> <!-- Contêiner onde as informações detalhadas do jogo serão inseridas via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Script da aplicação -->
+    <script src="script.js"></script> <!-- Importa o arquivo JavaScript no final do body para garantir que o HTML seja carregado antes -->
+</body>
+</html>

@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "nome": "Chrono Trigger",
+        "desenvolvedora": "Square",
+        "ano_lancamento": 1995,
+        "plataformas": ["Super Nintendo", "PlayStation", "Nintendo DS", "Mobile", "PC"],
+        "descricao": "Um RPG épico sobre um grupo de aventureiros que viaja através do tempo para prevenir uma catástrofe global."
+    },
+    {
+        "id": 2,
+        "nome": "Super Mario Bros. 3",
+        "desenvolvedora": "Nintendo",
+        "ano_lancamento": 1988,
+        "plataformas": ["NES", "Super Nintendo", "Game Boy Advance", "Virtual Console"],
+        "descricao": "Mario e Luigi embarcam em uma aventura para salvar os governantes de sete reinos do vilão Bowser e seus filhos."
+    },
+    {
+        "id": 3,
+        "nome": "The Legend of Zelda: A Link to the Past",
+        "desenvolvedora": "Nintendo",
+        "ano_lancamento": 1991,
+        "plataformas": ["Super Nintendo", "Game Boy Advance", "Virtual Console"],
+        "descricao": "Link viaja entre o Mundo da Luz e o Mundo das Trevas para salvar a Princesa Zelda e derrotar o malvado Ganon."
+    },
+    {
+        "id": 4,
+        "nome": "Street Fighter II",
+        "desenvolvedora": "Capcom",
+        "ano_lancamento": 1991,
+        "plataformas": ["Arcade", "Super Nintendo", "Mega Drive", "PC", "Múltiplas outras"],
+        "descricao": "O jogo que definiu o gênero de luta, colocando competidores de todo o mundo uns contra os outros em batalhas um-a-um."
+    },
+    {
+        "id": 5,
+        "nome": "Sonic the Hedgehog 2",
+        "desenvolvedora": "Sega",
+        "ano_lancamento": 1992,
+        "plataformas": ["Mega Drive", "Game Gear", "Múltiplas outras"],
+        "descricao": "Sonic e seu novo amigo Tails unem forças para impedir que o Dr. Robotnik colete as Esmeraldas do Caos."
+    },
+    {
+        "id": 6,
+        "nome": "Mega Man X",
+        "desenvolvedora": "Capcom",
+        "ano_lancamento": 1993,
+        "plataformas": ["Super Nintendo", "PC", "PlayStation"],
+        "descricao": "Em um futuro distante, o robô 'X' luta contra os 'Mavericks', robôs que se tornaram uma ameaça para a humanidade."
+    },
+    {
+        "id": 7,
+        "nome": "Super Metroid",
+        "desenvolvedora": "Nintendo",
+        "ano_lancamento": 1994,
+        "plataformas": ["Super Nintendo", "Virtual Console"],
+        "descricao": "A caçadora de recompensas Samus Aran explora o planeta Zebes para recuperar uma larva Metroid roubada pelos Piratas Espaciais."
+    },
+    {
+        "id": 8,
+        "nome": "Castlevania: Symphony of the Night",
+        "desenvolvedora": "Konami",
+        "ano_lancamento": 1997,
+        "plataformas": ["PlayStation", "Sega Saturn", "Xbox 360"],
+        "descricao": "Alucard, filho de Drácula, explora o castelo de seu pai para destruir o mal que ele representa, em um jogo que definiu o gênero Metroidvania."
+    },
+    {
+        "id": 9,
+        "nome": "Final Fantasy VII",
+        "desenvolvedora": "Square",
+        "ano_lancamento": 1997,
+        "plataformas": ["PlayStation", "PC", "Múltiplas outras"],
+        "descricao": "Um mercenário se junta a um grupo eco-terrorista para lutar contra a megacorporação Shinra, que está drenando a energia vital do planeta."
+    },
+    {
+        "id": 10,
+        "nome": "Donkey Kong Country",
+        "desenvolvedora": "Rare",
+        "ano_lancamento": 1994,
+        "plataformas": ["Super Nintendo", "Game Boy Color", "Game Boy Advance"],
+        "descricao": "Donkey Kong e seu sobrinho Diddy Kong partem para recuperar seu estoque de bananas roubado pelo Rei K. Rool."
+    },
+    {
+        "id": 11,
+        "nome": "Pac-Man",
+        "desenvolvedora": "Namco",
+        "ano_lancamento": 1980,
+        "plataformas": ["Arcade", "Atari 2600", "NES", "Múltiplas outras"],
+        "descricao": "O icônico personagem amarelo deve comer todos os pontos em um labirinto enquanto evita quatro fantasmas coloridos."
+    },
+    {
+        "id": 12,
+        "nome": "Tetris",
+        "desenvolvedora": "Alexey Pajitnov",
+        "ano_lancamento": 1984,
+        "plataformas": ["Game Boy", "NES", "PC", "Praticamente todas"],
+        "descricao": "Um dos jogos de quebra-cabeça mais famosos do mundo, onde o jogador deve encaixar blocos que caem para formar linhas completas."
+    },
+    {
+        "id": 13,
+        "nome": "Mortal Kombat II",
+        "desenvolvedora": "Midway",
+        "ano_lancamento": 1993,
+        "plataformas": ["Arcade", "Super Nintendo", "Mega Drive"],
+        "descricao": "Guerreiros da Terra viajam para o Outworld para competir em um torneio de artes marciais e salvar seu reino da aniquilação."
+    },
+    {
+        "id": 14,
+        "nome": "Contra",
+        "desenvolvedora": "Konami",
+        "ano_lancamento": 1987,
+        "plataformas": ["Arcade", "NES"],
+        "descricao": "Dois soldados de elite lutam contra uma organização terrorista e uma invasão alienígena em um intenso jogo de tiro e plataforma."
+    },
+    {
+        "id": 15,
+        "nome": "EarthBound",
+        "desenvolvedora": "Ape Inc., HAL Laboratory",
+        "ano_lancamento": 1994,
+        "plataformas": ["Super Nintendo", "Virtual Console"],
+        "descricao": "Um RPG peculiar sobre um garoto chamado Ness que viaja pelo mundo para impedir uma invasão alienígena maligna."
+    },
+    {
+        "id": 16,
+        "nome": "Metal Gear Solid",
+        "desenvolvedora": "Konami",
+        "ano_lancamento": 1998,
+        "plataformas": ["PlayStation", "PC"],
+        "descricao": "O agente Solid Snake se infiltra em uma base nuclear para neutralizar uma ameaça terrorista de uma unidade de forças especiais renegada."
+    },
+    {
+        "id": 17,
+        "nome": "Doom",
+        "desenvolvedora": "id Software",
+        "ano_lancamento": 1993,
+        "plataformas": ["PC", "Super Nintendo", "PlayStation", "Múltiplas outras"],
+        "descricao": "Um fuzileiro espacial luta contra hordas de demônios do Inferno após um experimento de teletransporte dar terrivelmente errado em Marte."
+    },
+    {
+        "id": 18,
+        "nome": "Super Mario Kart",
+        "desenvolvedora": "Nintendo",
+        "ano_lancamento": 1992,
+        "plataformas": ["Super Nintendo", "Virtual Console"],
+        "descricao": "O jogo que iniciou o gênero de corrida de karts, com personagens do universo Mario competindo em pistas cheias de power-ups."
+    },
+    {
+        "id": 19,
+        "nome": "Final Fantasy VI",
+        "desenvolvedora": "Square",
+        "ano_lancamento": 1994,
+        "plataformas": ["Super Nintendo", "PlayStation", "Game Boy Advance"],
+        "descricao": "Um grupo de rebeldes luta contra um império tirânico em um mundo onde a magia está desaparecendo e a tecnologia a vapor avança."
+    },
+    {
+        "id": 20,
+        "nome": "Golden Axe",
+        "desenvolvedora": "Sega",
+        "ano_lancamento": 1989,
+        "plataformas": ["Arcade", "Mega Drive", "Master System"],
+        "descricao": "Três guerreiros buscam vingança contra o tirano Death Adder neste clássico jogo de beat 'em up de fantasia medieval."
+    }
+]

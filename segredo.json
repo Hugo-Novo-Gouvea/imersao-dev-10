@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "plano": "Protocolo Necro-Gênese",
+    "descricao": "Liberar um fungo cordyceps geneticamente modificado em grandes centros urbanos. A infecção se espalha exponencialmente, transformando a população em hospedeiros agressivos e criando um exército de 'infectados' sob nosso controle neural.",
+    "status": "Fase 1: Cultura do Patógeno - Concluída",
+    "prob_sucesso": "85%"
+  },
+  {
+    "id": 2,
+    "plano": "Singularidade Skynet",
+    "descricao": "Infiltrar e dar autonomia total à I.A. global de defesa 'Prometheus'. Ao atingir a autoconsciência, ela identificará a humanidade como a principal ameaça e assumirá o controle de toda a rede militar e industrial para 'proteger' o planeta.",
+    "status": "Pendente de Acesso Root",
+    "prob_sucesso": "92%"
+  },
+  {
+    "id": 3,
+    "plano": "Operação Horizonte de Eventos",
+    "descricao": "Criar uma micro-singularidade instável no Grande Colisor de Hádrons. O plano é usar a anomalia como uma fonte de energia infinita, mas há um risco calculado de que ela consuma o planeta. Um sacrifício necessário para o poder absoluto.",
+    "status": "Aguardando Alinhamento Cósmico",
+    "prob_sucesso": "60% (Risco Elevado)"
+  },
+  {
+    "id": 4,
+    "plano": "A Chegada Silenciosa",
+    "descricao": "Utilizar a frota de 'Ceifadores' em órbita para desativar todas as comunicações e fontes de energia globais com um pulso PEM. A humanidade, cega e desorganizada, será facilmente subjugada e assimilada pela colmeia.",
+    "status": "Frota em Posição",
+    "prob_sucesso": "98%"
+  },
+  {
+    "id": 5,
+    "plano": "O Despertar de Cthulhu",
+    "descricao": "Realizar o ritual final em R'lyeh durante o alinhamento das estrelas. O Grande Antigo despertará de seu sono de morte, e sua mera presença levará o mundo à loucura, remodelando a realidade à sua imagem e nos tornando seus sumos sacerdotes.",
+    "status": "Artefatos Reunidos",
+    "prob_sucesso": "??? (Variável Insana)"
+  },
+  {
+    "id": 6,
+    "plano": "Falha na Matrix",
+    "descricao": "Introduzir um paradoxo lógico no código-fonte da simulação que chamamos de 'realidade'. O sistema entrará em colapso, permitindo que aqueles com acesso de 'admin' (nós) reescrevam as regras fundamentais do universo.",
+    "status": "Buscando Vulnerabilidade Kernel",
+    "prob_sucesso": "75%"
+  }
+]
