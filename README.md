@@ -1,10 +1,10 @@
-# 🕹️ Retro Game Finder 🕹️
+# 🕹️ Retro Game 🕹️
 
 Bem-vindo ao Retro Game! Uma aplicação web simples e estilizada para explorar uma coleção de videogames clássicos. Este projeto foi criado com HTML, CSS e JavaScript puros, focando em uma estética retrô, neon e pixel art.
 
 ## ✨ Visão Geral
 
-O Retro Game Finder permite que você visualize uma lista de jogos icônicos e pesquise em tempo real para encontrar seus favoritos. Cada jogo é apresentado em um "card" com informações relevantes como desenvolvedora, ano de lançamento e plataformas.
+O Retro Game permite que você visualize uma lista de jogos icônicos e pesquise em tempo real para encontrar seus favoritos. Cada jogo é apresentado em um "card" com informações relevantes como desenvolvedora, ano de lançamento e plataformas.
 
 ## 🚀 Funcionalidades
 
